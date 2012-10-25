@@ -12,6 +12,12 @@ You can see all the changes that have been made since the initial commit at the
 following URL:
 
 https://github.com/smerrill/puppet-pear/commits/master/lib/puppet/provider/package/pear.rb
+## Puppet Configuration
+
+Ensure that you have the following in your puppet.conf file.
+```puppet
+pluginsync=true
+```
 
 ## Example usage
 
