@@ -121,11 +121,10 @@ Puppet::Type.type(:package).provide :pear, :parent => Puppet::Provider::Package 
     # Channel provided
     if source = @resource[:source]
 
-      match = source.match(/^([^\/]+)(?:\/(.*))?$/)
+      match = source.include?('/')
 
       if match
-        channel = match[1]
-        package = match[2]
+        channel, _, package = source.rpartition('/')
       end
 
       # Check if channel is available, if not, discover
