@@ -20,7 +20,7 @@ Puppet::Type.type(:package).provide :pear, :parent => Puppet::Provider::Package 
     command = [command(:pearcmd), "list", "-a"]
 
     begin
-      list = execute(command).collect do |set|
+      list = execute(command).lines.collect do |set|
         if hash[:justme]
           if  set =~ /^hash[:justme]/
             if pearhash = pearsplit(set)
@@ -97,7 +97,7 @@ Puppet::Type.type(:package).provide :pear, :parent => Puppet::Provider::Package 
 
   def self.channellist
     command = [command(:pearcmd), "list-channels"]
-    list = execute(command).collect do |set|
+    list = execute(command).lines.collect do |set|
       if channelhash = channelsplit(set)
         channelhash
       else
@@ -166,7 +166,7 @@ Puppet::Type.type(:package).provide :pear, :parent => Puppet::Provider::Package 
     # This always gets the latest version available.
     version = ''
     command = [command(:pearcmd), "remote-info", @resource[:source]]
-      list = execute(command).collect do |set|
+      list = execute(command).lines.collect do |set|
       if set =~ /^Latest/
         version = set.split[1]
       end
