@@ -1,5 +1,5 @@
 # Add a define to allow installing PEAR packages.
-define pear::package(
+define my_pear::package(
   $package = $title,
   $repository = "pear.php.net",
   $version = "latest"
@@ -15,6 +15,6 @@ define pear::package(
     provider => "pear",
     source => $pear_source,
     ensure => $version,
-    require => Class["pear"],
+    require => Class["my_pear"],
   }
 }
